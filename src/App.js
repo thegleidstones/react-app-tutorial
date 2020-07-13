@@ -12,6 +12,10 @@ import FormRole from './module/role/form';
 import ListRole from './module/role/list';
 import EditRole from './module/role/edit';
 
+import FormState from './module/state/form';
+import ListState from './module/state/list';
+import EditState from './module/state/edit';
+
 function App() {
   return (
     <Router>
@@ -26,10 +30,12 @@ function App() {
               <li class="nav-item active">
                 <Link clas="nav-link" to="/role">Role List</Link>
                 <Link clas="nav-link" to="/employee">Employee List</Link>
+                <Link clas="nav-link" to="/state">State List</Link>
               </li>
             </ul>
             <Link class="btn btn-info" to="/employee/form">Add Employee</Link>
             <Link class="btn btn-info" to="/role/form">Add Role</Link>
+            <Link class="btn btn-info" to="/state/form">Add State</Link>
           </div>
         </nav>
 
@@ -41,6 +47,9 @@ function App() {
             <Route path="/role" exact component={ListRole} />
             <Route path="/role/form" component={FormRole} />
             <Route path="/role/edit/:id" component={EditRole} />
+            <Route path="/state" exact component={ListState} />
+            <Route path="/state/form" component={FormState} />
+            <Route path="/state/edit/:id" component={EditState} />
           </div>
         </div>
 
