@@ -19,11 +19,11 @@ class FormComponent extends React.Component {
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputState">State</label>
-                        <input type="text" class="form-control" id="inputRole" placeholder="Role" value={this.state.campState} onChange={(value)=> this.setState({campState:value.target.value})}/>
+                        <input type="text" class="form-control" id="inputRole" placeholder="State" value={this.state.campState} onChange={(value)=> this.setState({campState:value.target.value})}/>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputFu">FU</label>
-                        <input type="text" class="form-control" id="inputRole" placeholder="Role" value={this.state.campFu} onChange={(value)=> this.setState({campFu:value.target.value})}/>
+                        <input type="text" class="form-control" id="inputRole" placeholder="UF" value={this.state.campFu} onChange={(value)=> this.setState({campFu:value.target.value})}/>
                     </div>
                 </div>
 

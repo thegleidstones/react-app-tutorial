@@ -11,15 +11,15 @@ class listComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listEmployee:[]
+            listCity:[]
         }
     }
 
     componentDidMount() {
-        axios.get("http://localhost:3000/employee/list/")
+        axios.get("http://localhost:3000/city/list/")
         .then(res => {
             const data = res.data.data;
-            this.setState({ listEmployee:data });
+            this.setState({ listCity:data });
         })
         .catch(error => {
             alert(error)
@@ -27,19 +27,14 @@ class listComponent extends React.Component {
     }
 
     loadFillData() {
-        return this.state.listEmployee.map((data) => {
+        return this.state.listCity.map((data) => {
             return(
                 <tr>
                     <th>{data.id}</th>
-                    <td>{data.role.role}</td>
                     <td>{data.name}</td>
-                    <td>{data.email}</td>
-                    <td>{data.address}</td>
-                    <td>{data.city.name}</td>
-                    <td>{data.city.state.fu}</td>
-                    <td>{data.phone}</td>
+                    <td>{data.state.fu}</td>
                     <td>
-                        <Link class="btn btn-outline-info" to={"/employee/edit/"+data.id}>Edit</Link>
+                        <Link class="btn btn-outline-info" to={"/city/edit/"+data.id}>Edit</Link>
                     </td>
                     <td>
                         <button class="btn btn-outline-danger" onClick={() => this.onDelete(data.id)}>Delete</button>
@@ -49,17 +44,17 @@ class listComponent extends React.Component {
         })
     }
 
-    sendDelete(userId) {
-        const baseUrl = 'http://localhost:3000/employee/delete/'
+    sendDelete(cityId) {
+        const baseUrl = 'http://localhost:3000/city/delete/'
 
         axios.post(baseUrl, {
-            id: userId
+            id: cityId
         })
         .then(response => {
             if(response.data.success) {
                 Swal.fire(
                 'Deleted!',
-                'Your employee has been deleted.',
+                'Your role has been deleted.',
                 'success'
                 )
                 this.componentDidMount();
@@ -98,13 +93,8 @@ class listComponent extends React.Component {
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Address</th>
                         <th scope="col">City</th>
                         <th scope="col">FU</th>
-                        <th scope="col">Phone</th>
                         <th colspan="2">Action</th>
                     </tr>
                 </thead>

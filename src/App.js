@@ -16,6 +16,10 @@ import FormState from './module/state/form';
 import ListState from './module/state/list';
 import EditState from './module/state/edit';
 
+import FormCity from './module/city/form';
+import ListCity from './module/city/list';
+import EditCity from './module/city/edit';
+
 function App() {
   return (
     <Router>
@@ -36,6 +40,7 @@ function App() {
             <Link class="btn btn-info" to="/employee/form">Add Employee</Link>
             <Link class="btn btn-info" to="/role/form">Add Role</Link>
             <Link class="btn btn-info" to="/state/form">Add State</Link>
+            <Link class="btn btn-info" to="/City/form">Add City</Link>
           </div>
         </nav>
 
@@ -50,6 +55,9 @@ function App() {
             <Route path="/state" exact component={ListState} />
             <Route path="/state/form" component={FormState} />
             <Route path="/state/edit/:id" component={EditState} />
+            <Route path="/city" exact component={ListCity} />
+            <Route path="/city/form" component={FormCity} />
+            <Route path="/city/edit/:id" component={EditCity} />
           </div>
         </div>
 
