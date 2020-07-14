@@ -35,6 +35,7 @@ function App() {
                 <Link clas="nav-link" to="/role">Role List</Link>
                 <Link clas="nav-link" to="/employee">Employee List</Link>
                 <Link clas="nav-link" to="/state">State List</Link>
+                <Link clas="nav-link" to="/city">City List</Link>
               </li>
             </ul>
             <Link class="btn btn-info" to="/employee/form">Add Employee</Link>

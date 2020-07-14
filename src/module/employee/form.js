@@ -9,17 +9,28 @@ class FormComponent extends React.Component {
         super(props);
         this.state = {
             listRole: [],
+            listCity: [],
             campName: "",
             campEmail: "",
             campPhone: "",
             campAddress: "",
-            selectRole: 0
+            selectRole: 0,
+            selectCity: 0,
+            selectState: "",
         }
         this.handleSelectItem = this.handleSelectItem.bind(this);
+        this.handleSelectCity = this.handleSelectCity.bind(this);
     }
 
     handleSelectItem(e) {
         this.setState({selectRole: e.target.value});
+    }
+
+    handleSelectCity(e) {
+        this.setState({selectCity: e.target.value});
+        //const  { id } = this.state.listCity[0];
+        //alert('Verificando event value: ' + e.target.value);
+        this.setState({selectState: this.state.listCity[e.target.value].state.state});
     }
 
     componentDidMount() {
@@ -31,6 +42,16 @@ class FormComponent extends React.Component {
         .catch(error => {
             alert(error)
         });
+
+        Axios.get("http://localhost:3000/city/list/")
+        .then(res => {
+            const data = res.data.data;
+            this.setState({ listCity:data });
+            console.log(this.state.listCity)
+        })
+        .catch(error => {
+            alert(error)
+        })
     }
 
     render() {
@@ -48,9 +69,9 @@ class FormComponent extends React.Component {
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="role">Role</label>
+                        <label for="role">Role {this.state.selectRole}</label>
                         <select id="role" value={this.state.selectRole} class="form-control" onChange={this.handleSelectItem}>
-                            <option>Choose...</option>
+                            <option value="0">Choose...</option>
                             {this.state.listRole.map((item, index) => (
                                 <option key={index} value={item.id}>{item.role}</option>
                             ))}
@@ -64,6 +85,20 @@ class FormComponent extends React.Component {
                 <div class="form-group">
                     <label for="inputAddress">Address</label>
                     <input type="text" class="form-control" id="inputAdress" placeholder="1234 Main St" value={this.state.campAddress} onChange={(value)=> this.setState({campAddress:value.target.value})}/>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="city">City {this.state.selectCity}</label>
+                        <select id="city" value={this.state.selectCity} class="form-control" onChange={this.handleSelectCity}>
+                            {this.state.listCity.map((item, index) => (
+                                <option key={index} value={index}>{item.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" readOnly={true} placeholder="State" value={this.state.selectState} onChange={(value)=> this.setState({selectState:value.target.value})}/>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary" onClick={()=>this.sendSave()}>Sign in</button>
@@ -90,7 +125,8 @@ class FormComponent extends React.Component {
                 email: this.state.campEmail,
                 phone: this.state.campPhone,
                 address: this.state.campAddress,
-                role: this.state.selectRole
+                role: this.state.selectRole,
+                city: this.state.listCity[this.state.selectCity].id
             }
 
             Axios.post(baseUrl, datapost)
