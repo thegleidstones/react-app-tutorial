@@ -30,18 +30,36 @@ function App() {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <Link clas="nav-link" to="/role">Role List</Link>
-                <Link clas="nav-link" to="/employee">Employee List</Link>
-                <Link clas="nav-link" to="/state">State List</Link>
-                <Link clas="nav-link" to="/city">City List</Link>
+            <ul class="nav nav-pills">
+              <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Roles</a>
+                <div class="dropdown-menu">
+                  <Link class="dropdown-item" to="/role">Role List</Link>
+                  <Link class="dropdown-item" to="/role/form">+ Add Role</Link>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Employees</a>
+                <div class="dropdown-menu">
+                  <Link class="dropdown-item" to="/employee">List</Link>
+                  <Link class="dropdown-item" to="/employee/form">+ Add Employee</Link>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">States</a>
+                <div class="dropdown-menu">
+                  <Link class="dropdown-item" to="/state">State List</Link>
+                  <Link class="dropdown-item" to="/state/form">+ Add State</Link>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cities</a>
+                <div class="dropdown-menu">
+                  <Link class="dropdown-item" to="/city">City List</Link>
+                  <Link class="dropdown-item" to="/City/form">+ Add City</Link>
+                </div>                  
               </li>
             </ul>
-            <Link class="btn btn-info" to="/employee/form">Add Employee</Link>
-            <Link class="btn btn-info" to="/role/form">Add Role</Link>
-            <Link class="btn btn-info" to="/state/form">Add State</Link>
-            <Link class="btn btn-info" to="/City/form">Add City</Link>
           </div>
         </nav>
 
