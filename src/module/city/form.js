@@ -4,6 +4,7 @@ import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Header from '../../components/header';
+import Select from '../../components/SelectStateComponent';
 
 class FormComponent extends React.Component {
 	constructor(props) {
@@ -38,19 +39,17 @@ class FormComponent extends React.Component {
 				<Header title="Cities" />
 				<form>
 					<div class="form-row">
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-3">
 							<label for="inputCity">City</label>
 							<input type="text" class="form-control" id="inputCity" placeholder="City" value={this.state.campCity} onChange={(value) => this.setState({ campCity: value.target.value })} />
 						</div>
-						<div class="form-group col-md-6">
-							<label for="state">State</label>
-							<select id="state" value={this.state.selectState} class="form-control" onChange={this.handleSelectItem}>
-								<option>Choose...</option>
-								{this.state.listState.map((item, index) => (
-									<option key={index} value={item.id}>{item.state}</option>
-								))}
-							</select>
-						</div>
+						<Select 
+							list={this.state.listState} 
+							selected={this.state.selectState}
+							onChange={this.handleSelectItem}
+							title="State"
+						/>
+
 					</div>
 
 					<button type="submit" class="btn btn-primary" onClick={() => this.sendSave()}>Save</button>

@@ -4,6 +4,7 @@ import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Header from '../../components/header';
+import Select from '../../components/SelectStateComponent';
 
 
 class EditComponent extends React.Component {
@@ -63,14 +64,12 @@ class EditComponent extends React.Component {
 							<label for="inputCity">City</label>
 							<input type="text" class="form-control" id="inputCity" placeholder="City" value={this.state.campCity} onChange={(value) => this.setState({ campCity: value.target.value })} />
 						</div>
-						<div class="form-group col-md-6">
-							<label for="inputState">State</label>
-							<select id="state" value={this.state.selectState} class="form-control" onChange={this.handleSelectionState}>
-								{this.state.listState.map((item, index) => (
-									<option key={index} value={item.id}>{item.state}</option>
-								))}
-							</select>
-						</div>
+						<Select
+							list={this.state.listState}
+							selected={this.state.selectState}
+							onChange={this.handleSelectionState}
+							title="State"
+						/>
 					</div>
 					<button type="submit" class="btn btn-primary" onClick={() => this.sendUpdate()}>Update</button>
 				</form>
@@ -83,7 +82,7 @@ class EditComponent extends React.Component {
 		const baseUrl = "http://localhost:3000/city/update/" + cityId;
 		const datapost = {
 			city: this.state.campCity,
-			stateId: this.state.selectState
+			state: this.state.selectState
 		}
 
 		Axios.post(baseUrl, datapost)

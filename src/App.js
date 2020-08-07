@@ -62,7 +62,6 @@ function App() {
             </ul>
           </div>
         </nav>
-
         <div class="container py-4" >
           <div class="row">
             <Route path="/employee" exact component={List} />

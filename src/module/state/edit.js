@@ -48,8 +48,8 @@ class EditComponent extends React.Component {
 							<input type="text" class="form-control" id="inputState" placeholder="State" value={this.state.campState} onChange={(value) => this.setState({ campState: value.target.value })} />
 						</div>
 						<div class="form-group col-md-6">
-							<label for="inputFu">Role</label>
-							<input type="text" class="form-control" id="inputFu" placeholder="UF" value={this.state.campFu} onChange={(value) => this.setState({ campFu: value.target.value })} />
+							<label for="inputFu">FU</label>
+							<input type="text" class="form-control" id="inputFu" placeholder="FU" value={this.state.campFu} onChange={(value) => this.setState({ campFu: value.target.value })} />
 						</div>
 					</div>
 					<button type="submit" class="btn btn-primary" onClick={() => this.sendUpdate()}>Update</button>
